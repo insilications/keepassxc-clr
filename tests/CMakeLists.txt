@@ -71,8 +71,12 @@ macro(add_unit_test)
 
     if(KDE4_TEST_OUTPUT STREQUAL "xml")
         add_test(${_test_NAME} ${_test_LAUNCHER} ${_test_NAME} -xml -o ${_test_NAME}.tml)
+        set_tests_properties(${_test_NAME} PROPERTIES FAIL_REGULAR_EXPRESSION "Lala")
+        set_tests_properties(${_test_NAME} PROPERTIES PASS_REGULAR_EXPRESSION "TestPassed;All ok;[^a-z]Error;ERROR;Failed;PASS;passed;failed;FAIL")
     else(KDE4_TEST_OUTPUT STREQUAL "xml")
         add_test(${_test_NAME} ${_test_LAUNCHER} ${_test_NAME})
+        set_tests_properties(${_test_NAME} PROPERTIES FAIL_REGULAR_EXPRESSION "Lala")
+        set_tests_properties(${_test_NAME} PROPERTIES PASS_REGULAR_EXPRESSION "TestPassed;All ok;[^a-z]Error;ERROR;Failed;PASS;passed;failed;FAIL")
     endif(KDE4_TEST_OUTPUT STREQUAL "xml")
 
     if(NOT MSVC_IDE)   #not needed for the ide
